@@ -366,7 +366,8 @@ function install_locobot_ros2() {
     rm                                                                                                  \
       interbotix_ros_toolboxes/interbotix_perception_toolbox/COLCON_IGNORE                              \
       interbotix_ros_toolboxes/interbotix_common_toolbox/interbotix_moveit_interface/COLCON_IGNORE      \
-      interbotix_ros_toolboxes/interbotix_common_toolbox/interbotix_moveit_interface_msgs/COLCON_IGNORE
+      interbotix_ros_toolboxes/interbotix_common_toolbox/interbotix_moveit_interface_msgs/COLCON_IGNORE \
+      interbotix_ros_core/interbotix_ros_xseries/COLCON_IGNORE
     cd interbotix_ros_core
     git submodule update --init interbotix_ros_xseries/dynamixel_workbench_toolbox
     git submodule update --init interbotix_ros_xseries/interbotix_xs_driver
