@@ -23,7 +23,9 @@
       <xacro:if value="${hardware_type == 'gz_classic'}">
         <plugin>gazebo_ros2_control/GazeboSystem</plugin>
       </xacro:if>
-
+      <xacro:if value="${hardware_type == 'gz_ignition'}">
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      </xacro:if>
     </hardware>
 
     <joint name="waist">
@@ -102,7 +104,7 @@
           <param name="initial_position">0.0195</param>
         </joint>
 
-        <xacro:if value="${hardware_type == 'gz_classic'}">
+        <xacro:if value="${hardware_type in ('gz_classic', 'gz_ignition')}">
           <joint name="right_finger">
             <!-- <param name="mimic">left_finger</param>
             <param name="multiplier">1</param> -->
