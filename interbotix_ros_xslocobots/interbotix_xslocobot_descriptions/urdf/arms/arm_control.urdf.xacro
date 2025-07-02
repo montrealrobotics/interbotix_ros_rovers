@@ -34,6 +34,7 @@
         <param name="max">"${waist_limit_upper}"</param>
       </command_interface>
       <state_interface name="position"/>
+      <state_interface name="velocity"/>
       <param name="initial_position">0.00</param>
     </joint>
 
@@ -43,6 +44,7 @@
         <param name="max">"${shoulder_limit_upper}"</param>
       </command_interface>
       <state_interface name="position"/>
+      <state_interface name="velocity"/>
       <param name="initial_position">0.00</param>
     </joint>
 
@@ -52,6 +54,7 @@
         <param name="max">"${elbow_limit_upper}"</param>
       </command_interface>
       <state_interface name="position"/>
+      <state_interface name="velocity"/>
       <param name="initial_position">0.00</param>
     </joint>
 
@@ -62,6 +65,7 @@
           <param name="max">"${forearm_roll_limit_upper}"</param>
         </command_interface>
         <state_interface name="position"/>
+        <state_interface name="velocity"/>
         <param name="initial_position">0.00</param>
       </joint>
     </xacro:if>
@@ -72,6 +76,7 @@
         <param name="max">"${wrist_angle_limit_upper}"</param>
       </command_interface>
       <state_interface name="position"/>
+      <state_interface name="velocity"/>
       <param name="initial_position">0.00</param>
     </joint>
 
@@ -82,6 +87,7 @@
           <param name="max">"${wrist_rotate_limit_upper}"</param>
         </command_interface>
         <state_interface name="position"/>
+        <state_interface name="velocity"/>
         <param name="initial_position">0.00</param>
       </joint>
     </xacro:if>
