@@ -24,7 +24,7 @@
         <plugin>gazebo_ros2_control/GazeboSystem</plugin>
       </xacro:if>
       <xacro:if value="${hardware_type == 'gz_ignition'}">
-        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        <plugin>ign_ros2_control/IgnitionSystem</plugin>
       </xacro:if>
     </hardware>
 
@@ -33,9 +33,9 @@
         <param name="min">"${waist_limit_lower}"</param>
         <param name="max">"${waist_limit_upper}"</param>
       </command_interface>
+      <command_interface name="velocity"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-      <param name="initial_position">0.00</param>
     </joint>
 
     <joint name="shoulder">
@@ -43,9 +43,9 @@
         <param name="min">"${shoulder_limit_lower}"</param>
         <param name="max">"${shoulder_limit_upper}"</param>
       </command_interface>
+      <command_interface name="velocity"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-      <param name="initial_position">0.00</param>
     </joint>
 
     <joint name="elbow">
@@ -53,9 +53,9 @@
         <param name="min">"${elbow_limit_lower}"</param>
         <param name="max">"${elbow_limit_upper}"</param>
       </command_interface>
+      <command_interface name="velocity"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-      <param name="initial_position">0.00</param>
     </joint>
 
     <xacro:if value="${dof >= 6}">
@@ -64,9 +64,9 @@
           <param name="min">"${forearm_roll_limit_lower}"</param>
           <param name="max">"${forearm_roll_limit_upper}"</param>
         </command_interface>
+        <command_interface name="velocity"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.00</param>
       </joint>
     </xacro:if>
 
@@ -75,9 +75,9 @@
         <param name="min">"${wrist_angle_limit_lower}"</param>
         <param name="max">"${wrist_angle_limit_upper}"</param>
       </command_interface>
+      <command_interface name="velocity"/>
       <state_interface name="position"/>
       <state_interface name="velocity"/>
-      <param name="initial_position">0.00</param>
     </joint>
 
     <xacro:if value="${dof >= 5}">
@@ -86,14 +86,14 @@
           <param name="min">"${wrist_rotate_limit_lower}"</param>
           <param name="max">"${wrist_rotate_limit_upper}"</param>
         </command_interface>
+        <command_interface name="velocity"/>
         <state_interface name="position"/>
         <state_interface name="velocity"/>
-        <param name="initial_position">0.00</param>
       </joint>
     </xacro:if>
 
     <xacro:if value="$(arg use_gripper)">
-      <xacro:if value="${hardware_type in ('fake', 'gz_classic')}">
+      <xacro:if value="${hardware_type in ('fake', 'gz_classic', 'gz_ignition')}">
         <joint name="gripper">
           <command_interface name="position"/>
           <state_interface name="position"/>

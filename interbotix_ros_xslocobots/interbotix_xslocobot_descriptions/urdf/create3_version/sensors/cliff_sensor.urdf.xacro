@@ -29,14 +29,6 @@
                       update_rate="${update_rate}" visualize="${visualize}"
                       h_samples="${samples}" h_res="1.0" h_min_angle="-${fov_rad/2}" h_max_angle="${fov_rad/2}"
                       r_min="${min_range}" r_max="${max_range}" r_res="1.0">
-      <plugin name="${sensor_name}" filename="libgazebo_ros_create_cliff_sensor.so">
-        <ros>
-          <namespace>/${robot_name}</namespace>
-          <remapping>~/out:=_internal/${sensor_name}/event</remapping>
-        </ros>
-        <detection_threshold>${detection_threshold}</detection_threshold>
-        <frame_id>${sensor_name}</frame_id>
-      </plugin>
     </xacro:ray_sensor>
   </gazebo>
 </xacro:macro>

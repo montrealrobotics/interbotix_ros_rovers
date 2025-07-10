@@ -135,7 +135,7 @@
 
     <xacro:if value="${hardware_type == 'gz_ignition'}">
       <gazebo>
-        <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+        <plugin filename="libign_ros2_control-system.so" name="ign_ros2_control::IgnitionROS2ControlPlugin">
           <parameters> $(find interbotix_xslocobot_sim)/config/create3_version/$(arg robot_model)_controllers.yaml </parameters>
         </plugin>
       </gazebo>

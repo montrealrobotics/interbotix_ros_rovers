@@ -51,7 +51,7 @@
     params="sensor_name gazebo update_rate visualize
             h_samples h_res h_min_angle h_max_angle
             v_samples:=1 v_res:=1 v_min_angle:=0 v_max_angle:=0
-            r_min r_max r_res *plugin">
+            r_min r_max r_res">
     <!-- Classic -->
     <xacro:if value="${hardware_type == 'gz_classic'}">
       <sensor type="ray" name="${sensor_name}">
@@ -85,7 +85,6 @@
           <mean>0.0</mean>
           <stddev>0.0</stddev>
         </noise>
-        <xacro:insert_block name="plugin"/>
       </sensor>
     </xacro:if>
 
