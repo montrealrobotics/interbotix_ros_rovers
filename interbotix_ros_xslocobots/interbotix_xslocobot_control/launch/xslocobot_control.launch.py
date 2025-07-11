@@ -68,6 +68,7 @@ def launch_setup(context, *args, **kwargs):
     use_lidar_launch_arg = LaunchConfiguration('use_lidar')
 
     use_camera_launch_arg = LaunchConfiguration('use_camera')
+    use_usb_camera_launch_arg = LaunchConfiguration('use_usb_cam')
     rs_camera_pointcloud_enable_launch_arg = LaunchConfiguration('rs_camera_pointcloud_enable')
     rs_camera_logging_level_launch_arg = LaunchConfiguration('rs_camera_logging_level')
     rs_camera_output_location_launch_arg = LaunchConfiguration('rs_camera_output_location')
@@ -79,6 +80,7 @@ def launch_setup(context, *args, **kwargs):
     robot_description_launch_arg = LaunchConfiguration('robot_description')
     hardware_type_launch_arg = LaunchConfiguration('hardware_type')
     xs_driver_logging_level_launch_arg = LaunchConfiguration('xs_driver_logging_level')
+    cam_config_arg = LaunchConfiguration('usb_cam_config_file')
 
     # sets use_sim_time parameter to 'true' if using gazebo hardware
     use_sim_time_param = determine_use_sim_time_param(
@@ -233,6 +235,15 @@ def launch_setup(context, *args, **kwargs):
         ],
         emulate_tty=True,
     )
+    usb_cam_node = Node(
+            condition=IfCondition(use_usb_camera_launch_arg),
+            package='usb_cam',
+            executable='usb_cam_node_exe',
+            output='screen',
+            name='camera',
+            namespace='usb_cam',
+            parameters=[cam_config_arg],
+    )
 
     tf_rebroadcaster_launch_include = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
@@ -266,6 +277,7 @@ def launch_setup(context, *args, **kwargs):
         rplidar_node,
         sllidar_node,
         rs_camera_node,
+        usb_cam_node,
         tf_rebroadcaster_launch_include,
     ]
 
@@ -514,6 +526,24 @@ def generate_launch_description():
                 'if `true`, the DYNAMIXEL simulator node is run; use RViz to visualize the'
                 " robot's motion; if `false`, the real DYNAMIXEL driver node is run."
             ),
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'usb_cam_config_file',
+            default_value=PathJoinSubstitution([
+                FindPackageShare('interbotix_xslocobot_control'),
+                'config',
+                'usb_cam.yaml'
+            ]),
+            description='Path to YAML configuration file'
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'use_usb_cam',
+            default_value='false',
+            description='Use usb camera'
         )
     )
     declared_arguments.append(

@@ -1,0 +1,11 @@
+/**:
+  camera:
+    ros__parameters:
+      video_device: "/dev/video0"
+      pixel_format: "yuyv"
+      image_width: 160
+      image_height: 120
+      camera_frame_id: "usb_cam"
+      io_method: "mmap"
+      framerate: 9.0 
+    
