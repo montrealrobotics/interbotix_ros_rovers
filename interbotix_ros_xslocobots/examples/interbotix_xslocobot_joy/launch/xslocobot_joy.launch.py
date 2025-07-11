@@ -61,6 +61,7 @@ def launch_setup(context, *args, **kwargs):
     use_base_launch_arg = LaunchConfiguration('use_base')
     use_lidar_launch_arg = LaunchConfiguration('use_lidar')
     use_camera_launch_arg = LaunchConfiguration('use_camera')
+    use_usb_camera_launch_arg = LaunchConfiguration('use_usb_cam')
     mode_configs_launch_arg = LaunchConfiguration('mode_configs')
     threshold_launch_arg = LaunchConfiguration('threshold')
     controller_launch_arg = LaunchConfiguration('controller')
@@ -124,6 +125,7 @@ def launch_setup(context, *args, **kwargs):
             'use_base': use_base_launch_arg,
             'use_lidar': use_lidar_launch_arg,
             'use_camera': use_camera_launch_arg,
+            'use_usb_cam': use_usb_camera_launch_arg,
             'mode_configs': mode_configs_launch_arg,
             'use_sim': use_sim_launch_arg,
             'robot_description': robot_description_launch_arg,
@@ -210,6 +212,14 @@ def generate_launch_description():
             default_value='false',
             choices=('true', 'false'),
             description='if `true`, the RealSense camera nodes are launched.',
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'use_usb_cam',
+            default_value='false',
+            choices=('true', 'false'),
+            description='if `true`, the fisheye usb camera nodes are launched.',
         )
     )
     declared_arguments.append(
