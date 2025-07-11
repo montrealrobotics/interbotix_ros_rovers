@@ -106,6 +106,9 @@ def launch_setup(context, *args, **kwargs):
             '--robot_name', robot_name_launch_arg.perform(context),
             '--use_base', use_base_launch_arg.perform(context),
         ],
+        remappings=[
+            ('/mobile_base/odom', '/locobot/mobile_base/odom'),
+        ]
     )
 
     xslocobot_control_launch = IncludeLaunchDescription(

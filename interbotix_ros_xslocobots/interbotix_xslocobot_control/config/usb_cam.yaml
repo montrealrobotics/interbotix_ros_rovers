@@ -2,7 +2,7 @@
   camera:
     ros__parameters:
       video_device: "/dev/video0"
-      pixel_format: "yuyv"
+      pixel_format: "mjpeg2rgb"
       image_width: 160
       image_height: 120
       camera_frame_id: "usb_cam"
